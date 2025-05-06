@@ -1,0 +1,244 @@
+Numero identificativo del rispondente
+Numero identificativo della famiglia
+Peso di riporto all'universo
+Risposta proxy
+Metodo dell'intervista
+Sesso
+Classe di et 
+Paese di residenza
+Regione
+Ripartizione geografica
+Paese di nascita
+Cittadinanza
+Paese di nascita del padre
+Paese di nascita della madre
+Titolo di studio
+Condizione professionale
+Posizione nella professione
+Stato civile
+Numero componenti la famiglia
+Numero di componenti di et  inferiore o uguale a 13 anni (variabile non validata)
+Tipo di famiglia
+Relazione di parentela
+Tipo di nucleo
+Numero del nucleo
+Posizione nel nucleo
+Quinti di reddito
+Fonte principale di reddito
+Giudizio sullo stato di salute in generale
+E' affetto da malattie croniche o di lunga durata?
+Limitazioni che durano da almeno 6 mesi
+Croniche: Asma
+Asma:   stata diagnosticata da un medico?
+Croniche: Bronchite cronica, enfisema
+Bronchite cronica, enfisema:   stata diagnosticata da un medico?
+Croniche: Infarto
+Infarto:   stata diagnosticata da un medico?
+Croniche: Angina
+Angina:   stata diagnosticata da un medico?
+Croniche: Ipertensione
+Ipertensione:   stata diagnosticata da un medico?
+Croniche: Altre malattie del cuore
+Altre malattie del cuore:   stata diagnosticata da un medico?
+Croniche: Ictus
+Ictus:   stata diagnosticata da un medico?
+Croniche: Artrosi, artrite
+Artrosi, artrite:   stata diagnosticata da un medico?
+Croniche: Patologia lombare o altra affezione cronica a carico della schiena
+Patologia lombare:   stata diagnosticata da un medico?
+Croniche: Patologia cervicale o altra affezione cronica del collo
+Patologia cervicale:   stata diagnosticata da un medico?
+Croniche: Diabete
+Diabete:   stata diagnosticata da un medico?
+Croniche: Allergia
+Allergia:   stata diagnosticata da un medico?
+Croniche: Cirrosi epatica
+Cirrosi epatica:   stata diagnosticata da un medico?
+Croniche: Incontinenza urinaria, problemi di controllo della vescica
+Incontinenza urinaria:   stata diagnosticata da un medico?
+Croniche: Problemi renali
+Problemi renali:   stata diagnosticata da un medico?
+Croniche: Insufficienza renale cronica
+Insufficienza renale cronica:   stata diagnosticata da un medico?
+Croniche: Depressione
+Depressione:   stata diagnosticata da un medico?
+Croniche: Iperlipidemia
+Iperlipidemia:   stata diagnosticata da un medico?
+Croniche: Ansiet  cronica grave
+Ansiet  cronica grave:   stata diagnosticata da un medico?
+Croniche: Tumore maligno
+Tumore maligno:   stata diagnosticata da un medico?
+Croniche: Alzheimer, demenze senili
+Alzheimer, demenze senili:   stata diagnosticata da un medico?
+Croniche: Parkinsonismo
+Parkinsonismo:   stata diagnosticata da un medico?
+Croniche: Altra malattia
+Altra malattia cronica:   stata diagnosticata da un medico?
+Come va in generale la salute dei suoi denti
+Incidente stradale negli ultimi 12 mesi
+N  di incidenti stradali
+Infortunio domestico megli ultimi 12 mesi
+N  infortuni domestici
+Infortunio nel temp o libero megli ultimi 12 mesi
+N  infortuni nel tempo libero
+A seguito di questo(i) incidente(i)/infortunio(i) ha avuto bisogno di cure mediche? (in caso di pi  incidenti considerare quello pi  grave)
+Assenze dal lavoro per motivi di salute negli ultimi 12 mesi
+Numero di giorni di assenza dal lavoro
+Utilizzo occhiali o lenti
+ha difficolt  a vedere anche quando utilizza occhiali o lenti a contatto
+Uso di apparecchi acustici
+Ha difficolt  a sentire ci  che si dice in una conversazione con un 'altra persona in una stanza NON RUMOROSA anche usando apparecchi acustici
+Ha difficolt  a sentire ci  che si dice in una conversazione con un 'altra persona in una stanza RUMOROSA anche usando apparecchi acustici
+Ha difficolt  a camminare su una superficie pianeggiante per 500 metri (che corrispondono a circa 5 volte la lunghezza di un campo di calcio) senza alcun aiuto?
+Ha difficolt  a salire o scendere una rampa di scale (circa 12 scalini) senza alcun aiuto?
+Ha difficolt  a ricordare o a concentrarsi?
+Ha difficolt  a mordere o masticare cibi duri come una mela dura?
+Mangiare da solo, anche tagliando il cibo da solo
+Sdraiarsi e alzarsi dal letto o sedersi e alzarsi da una sedia da solo
+Vestirsi e spogliarsi da solo
+Usare i servizi igienici da solo
+Fare il bagno o la doccia da solo
+Abitualmente per qualcuna di queste attivit  riceve aiuto da persone o ricorre ad ausili (bastoni, stampelle, sedie a rotelle, ecc.)?
+Riceve aiuto da familiari
+Riceve aiuto da altre persone
+Riceve aiuto da persone a pagamento
+Utilizza ausili
+Bisogno di ricevere aiuto o pi  aiuto per almeno una attivit  di cura della persona
+Aiuti necessari
+Preparare i pasti
+Usare il telefono
+Fare la spesa
+Prendere le medicine
+Svolgere attivit  domestiche leggere
+Svolgere occasionalmente attivit  domestiche pesanti
+Gestire le sue risorse economiche e le attivit  amministrative abituali
+Abitualmente per qualcuna di queste attivit  riceve aiuto da persone o ricorre ad ausili (bastoni, stampelle, sedie a rotelle, ecc.)?
+Riceve aiuto da familiari
+Riceve aiuto da altre persone
+Riceve aiuto da persone a pagamento
+Utilizza ausili
+Bisogno di ricevere aiuto o pi  aiuto per almeno una attivit  domestica
+Aiuti necessari
+Quanto   stato intenso l' eventuale dolore fisico che ha provato nelle ultime 4 settimane?
+Nelle ultime 4 settimane, in che misura il dolore fisico ha interferito con le attivit  che svolge abitualmente (in casa e fuori casa)?
+Scarso interesse o piacere nel fare le cose
+Sentirsi gi , depresso o disperato
+Avere problemi ad addormentarsi o a dormire tutta la notte senza svegliarsi, o dormire troppo
+Sentirsi stanco o avere poca energia
+Scarso appetito o mangiare troppo
+Provare una scarsa opinione di s , sentirsi un fallimento oppure sentire di aver deluso se stesso o la sua famiglia
+Difficolt  a concentrarsi su qualcosa, ad esempio per leggere il giornale o guardare la televisione
+Muoversi o parlare cos  lentamente da poter essere notato da altre persone, oppure avvertire irrequietezza o agitazione insolita
+Considerando tutti i ricoveri nei 12 mesi, quante notti ha trascorso complessivamente in ospedale
+Ultima visita dentistica
+Frequenza con cui si lava i denti
+TIPO DI DENTISTA/ORTODONTISTA A CUI PREVALENTEMENTE SI E  RIVOLTO
+Se ha pagato per le cure dentali ultimo trattamento. 12 mesi.
+Quando   stata l ultima volta che si   rivolto al suo medico di famiglia per un problema che riguarda la sua salute?
+Nelle ultime 4 settimane, quante volte si   rivolto al medico di famiglia per un problema che riguarda la sua salute?
+Quando   stata l 'ultima volta che ha effettuato una visita medica specialistica (oculistica, ortopedica, cardiologica, ginecologica, psichiatrica, ecc.) per un problema che riguarda la sua salute?
+Nelle ultime 4 settimane, quante visite specialistiche ha fettuato per un problema che riguarda la sua salute?
+Struttura dell'ultima visita specialistica
+Ha scelto la struttura pi  vicina
+Per non pagare o pagare di meno
+Per fiducia nella struttura o nello specialista
+Avrebbe dovuto aspettare troppo tempo per prenotare in un altra struttura del SSN
+Altro
+Spesa ultima visita
+Negli ultimi 12 mesi per un problema che riguarda la sua salute si   rivolto a  .Fisioterapista, chinesiterapista, ecc
+Negli ultimi 12 mesi per un problema che riguarda la sua salute si   rivolto a  ..Psichiatra, psicologo, psicoterapeuta
+Negli ultimi 12 mesi per un problema che riguarda la sua salute si   rivolto a un logopedista, ortottista, audiometrista
+Spesa per trattamenti da Logopedista, ortottista, audiometrista o fisioterapista negli ultimi 12 mesi
+Accertamenti diagnostici negli ultimi 12 mesi
+Struttura dell'ultima visita specialistica
+Per non pagare o pagare di meno
+Fiducia
+Avrebbe dovuto aspettare troppo tempo per prenotare in un altra struttura del SSN
+Altro
+Spesa per l'ultimo accertamento
+Negli ultimi 12 mesi ha usufruito di assistenza domiciliare per un problema che riguarda la sua salute?
+Nelle ultime 2 settimane ha fatto uso di farmaci o integratori a base di erbe o vitamine che le sono stati PRESCRITTI da un medico?
+Nelle ultime 2 settimane ha fatto uso di farmaci o integratori a base di erbe o vitamine NON PRESCRITTI da un medico?
+Ultima volta che ha fatto il vaccino contro l'influenza
+Per quale motivo non ha fatto il vaccino antinfluenzale: Non penso di essere un soggetto a rischio
+Per quale motivo non ha fatto il vaccino antinfluenzale: Nessun medico me l ha consigliato
+Per quale motivo non ha fatto il vaccino antinfluenzale: Per prudenza / per timore dei rischi
+Per quale motivo non ha fatto il vaccino antinfluenzale: Ho dubbi sulla sua efficacia
+Per quale motivo non ha fatto il vaccino antinfluenzale: Per altro motivo
+Quando   stata l 'ultima volta che le   stata misurata la pressione arteriosa da personale sanitario (medico, infermiere, farmacista, ecc.)?
+Quando   stata l 'ultima volta che le   stato misurato il colesterolo nel sangue da personale sanitario (medico, infermiere, farmacista, ecc.)?
+Quando   stata l' ultima volta che le   stata misurata la glicemia (zucchero nel sangue) da personale sanitario (medico, infermiere, farmacista, ecc.)?
+Quando ha fatto l 'ultima volta il test per la ricerca del sangue occulto nelle feci?
+Quando ha fatto l 'ultima volta la colonscopia?
+Quando ha fatto l' ultima volta la mammografia?
+Ha fatto l'ultima mammografia in assenza di disturbi o sintomi
+L'ultima mammografia   stata fatta
+Et  alla prima mammografia
+Frequenza della mammografia
+Quando ha fatto l' ultima volta il pap test?
+L'ultima volta che ha fatto il pap-test o il test per la ricerca del papilloma virus
+Et  al primo pap-test or test hpv
+Frequenza dei controlli successivi al primo paptest o test hpv
+Negli ultimi 12 mesi ha effettuato qualche prestazione sanitaria in ritardo perch  la lista d attesa era troppo lunga?
+Negli ultimi 12 mesi ha effettuato qualche prestazione sanitaria in ritardo per difficolt  dovute alla distanza o alla disponibilit  di mezzi di trasporto?
+Rinuncia a Esami o cure mediche
+Rinuncia a Visite o trattamenti dentistici od ortodontistici
+Rinuncia a Farmaci prescritti da un medico
+Rinuncia a Psicologo, psichiatra o psicoterapeuta
+Indice di massa corporea
+Sforzo fisico nelle attivit  di lavoro
+Abitualmente quanti giorni a settimana CAMMINA continuativamente per almeno 10 minuti per spostarsi da un posto ad un altro?
+Abitualmente quanto tempo cammina al giorno per spostarsi da un posto all altro?
+Abitualmente quanti giorni a settimana VA IN BICICLETTA continuativamente per almeno 10 minuti per spostarsi da un posto ad un altro?
+Abitualmente quanto tempo va in bicicletta al giorno per spostarsi da un posto all altro?
+Abitualmente quanti giorni a settimana pratica sport, attivit  di fitness o attivit  fisiche ricreative (nel tempo libero) continuativamente per almeno 10 minuti?
+Per quanto tempo pratica sport, attivit  di fitness o attivit  fisiche ricreative (nel tempo libero) in una settimana? Classi di minuti
+Normalmente quanti giorni a settimana pratica attivit  specifiche per POTENZIARE i suoi muscoli, con qualsiasi allenamento o esercizio fisico?
+Tempo trascorso stando seduto in una giornata normale
+Quanto spesso mangia frutta?
+N. porzioni frutta al giorno
+Quanto spesso mangia verdura?
+N. porzioni verdura al giorno
+Quanto spesso beve succhi 100% di frutta/verdura?
+Quanto spesso consuma bevande analcoliche con zucchero?
+Lei attualmente fuma?
+N  sigarette al giorno (media)
+Ex- fumatore giornaliero
+Da quanti anni fuma o ha fumato tutti i giorni?
+A che et  ha iniziato a fumare
+Quanto spesso   esposto al fumo di tabacco in ambienti chiusi (casa, ufficio, ristoranti, ecc.)?
+Uso sigaretta elettronica
+consumo di acqua
+Abuso giornaliero
+Consumo a rischio
+Quante persone sente cos  vicine da poter contare su di loro in caso di gravi problemi personali?
+Quanto le sembra che gli altri siano attenti a quello che le accade?
+In caso di bisogno, quanto le risulterebbe facile ricevere un aiuto pratico da parte dei suoi vicini di casa?
+Lei si prende cura o assiste, almeno una volta a settimana, una o pi  persone con problemi dovuti all invecchiamento, patologie croniche o infermit ?
+La persona o le persone che lei assiste sono prevalentemente 
+Quante ore a settimana lei dedica complessivamente ad attivit  di assistenza?
+Evento doloroso negli ultimi 3 anni
+Valutazione del SSN
+Figli di et  inferiore o uguale a 36 mesi
+Allattamento al seno
+Durata dell'allattamento al seno
+Allattamento esclusivo al seno
+A che titolo la famiglia occupa l'abitazione?
+Di quante stanze si compone l'abitazione?
+Piano dell'ingresso principale all'abitazione
+Ci sono scale interne all'abitazione?
+Esiste un ascensore nell'edificio
+Spese abitazione troppo alte
+Abitazione troppo piccola
+Abitazione distante dai familiari
+Abitazione con irregolarit  erogazione acqua
+Abitazione con macchie di umidit  oppure muffe o funghi
+Abitazione in cattive condizioni
+La famiglia ha un'assicurazione sanitaria
+La famiglia si avvale di una collaboratrice domestica? (NO, SI)
+La famiglia si avvale di una baby sitter? (NO SI)
+La famiglia si avvale di una persona che assiste un anziano o di un disabile?
+Ore settimanali COLF
+Ore settimanali baby sitter
+Ore settimanali persona che assiste un anziano o un disabile
+Giudizio sulle risorse economiche della famiglia
