@@ -1,0 +1,312 @@
+library(xgboost)
+library(caret)
+library(dplyr)
+
+
+ehis <- read.delim("C:/Users/apant/Desktop/Statistical Learning/progetto/EHIS_Microdati_2019.txt")
+
+ehis[ehis == -3] <- NA
+ehis[ehis == -1] <- NA
+ehis[ehis == -2] <- NA
+ehis <- ehis[!is.na(ehis$UN2A), ]
+set.seed(123)
+ehis[ehis == -1 | ehis == -3] <- NA
+# Funzione per calcolare la moda (categoria più frequente)
+mode_cat <- function(x) {
+  tab <- table(x)
+  mod <- names(tab)[which.max(tab)]
+  return(mod)
+}
+
+mode_summary <- function(var, group, varname) {
+  levels_group <- unique(group)
+  
+  result <- data.frame(Group = character(),
+                       Variable = character(),
+                       Mode = character(),
+                       Count = integer(),
+                       Percent = numeric(),
+                       stringsAsFactors = FALSE)
+  
+  for (g in levels_group) {
+    subset_var <- var[group == g]
+    mode_val <- mode_cat(subset_var)
+    count_val <- sum(subset_var == mode_val, na.rm = TRUE)
+    percent_val <- round(count_val / length(subset_var) * 100, 1)
+    
+    result <- rbind(result,
+                    data.frame(Group = g,
+                               Variable = varname,
+                               Mode = mode_val,
+                               Count = count_val,
+                               Percent = percent_val))
+  }
+  return(result)
+}
+# Funzione che seleziona le variabili con moda diversa tra i gruppi di 'group_var'
+select_vars_diff_mode <- function(data, group_var, categorical_vars) {
+  group_levels <- unique(data[[group_var]])
+  
+  vars_diff <- c()
+  
+  for (v in categorical_vars) {
+    modes <- sapply(group_levels, function(g) {
+      subset_var <- data[[v]][data[[group_var]] == g]
+      mode_cat(subset_var)
+    })
+    # Controllo se la moda è uguale per tutti i gruppi
+    if(length(unique(modes)) > 1) {
+      vars_diff <- c(vars_diff, v)
+    }
+  }
+  
+  return(vars_diff)
+}
+# Ora chiamiamo la funzione passando anche il nome esplicitamente:
+
+
+
+# Supponiamo che il tuo dataframe si chiami 'df' e la variabile target sia 'UN2A'
+# Ecco come applicare la funzione a tutte le variabili categoriali (escluso UN2A)
+df<- ehis %>%
+  mutate(across(-WGT, as.factor))
+
+categorical_vars <- names(df)[sapply(df, function(x) is.factor(x) || is.character(x))]
+categorical_vars <- setdiff(categorical_vars, c("UN2A","WGT"))
+
+# Lista per raccogliere i risultati
+
+all_results <- do.call(rbind, lapply(categorical_vars, function(v) {
+  mode_summary(df[[v]], df$UN2A, v)
+}))
+
+# Visualizza i risultati
+print(all_results)
+
+# In alternativa, puoi riorganizzare la tabella con pivot_wider per maggiore chiarezza, usando tidyr:
+library(tidyr)
+summary_table <- pivot_wider(all_results,
+                             names_from = Group,
+                             values_from = c(Mode, Count, Percent))
+
+print(summary_table)
+
+
+vars_con_moda_diversa <- select_vars_diff_mode(df, "UN2A", categorical_vars)
+
+print(vars_con_moda_diversa)
+# Filtra all_results per tenere solo le variabili con moda diversa
+filtered_results <- all_results[all_results$Variable %in% vars_con_moda_diversa, ]
+
+# Visualizza il risultato filtrato
+print(filtered_results)
+
+# Lista delle variabili da controllare
+vars_to_check <- c("UN2A", "AGE_CLA75", "SEX", "RIP", "HS2", "CITIZEN2", "WGT", "IC1", 
+                   "BMI_CLASS", "FUMO", "REG", "HATLEVEL4", "POSIZ", "HHTYPE", 
+                   "HHINCOME", "REDPR", "HS1", "HS2", "CD2", "MH1D", 
+                   "MD1", "UN1A", "UN2B", "PE1", "PE2", 
+                   "SS1", "EVDOL", "VALSSN")
+
+# Conta il numero di NA per ciascuna variabile
+na_counts <- sapply(vars_to_check, function(var) sum(is.na(ehis[[var]])))
+
+# Converti in data.frame per una visualizzazione più ordinata
+na_summary <- data.frame(Variable = names(na_counts),
+                         NA_Count = as.integer(na_counts))
+
+# Visualizza la tabella
+print(na_summary)
+
+dati_clean <- ehis %>%
+  select(UN2A, AGE_CLA75, SEX, RIP, HS2, CITIZEN2, WGT,IC1,BMI_CLASS,FUMO,REG, HATLEVEL4,  HHTYPE, HHINCOME, REDPR, HS1, HS2, CD2, MH1D, MD1, UN1A, UN2B, PE1,PE2,SS1, EVDOL, VALSSN
+)  %>%
+  filter(complete.cases(.))  %>%
+  mutate(across(-WGT, as.factor)) %>%  # tutte le variabili tranne WGT diventano fattori
+  mutate(y_adj = as.numeric(UN2A) - 1) %>%  # crea target numerico da UN2A
+  select(-UN2A)  # rimuove UN2A
+
+
+X <- model.matrix(y_adj ~ . - WGT, data = dati_clean)[, -1]
+y <- dati_clean$y_adj
+weights <- as.numeric(dati_clean$WGT)
+# 60% Train, 20% Calibration, 20% Test
+idx <- sample(1:nrow(dati_clean))
+n <- nrow(dati_clean)
+train_idx <- idx[1:round(0.6 * n)]
+cal_idx <- idx[(round(0.6 * n) + 1):round(0.8 * n)]
+test_idx <- idx[(round(0.8 * n) + 1):n]
+
+train <- dati_clean[train_idx, ]
+cal <- dati_clean[cal_idx, ]
+test <- dati_clean[test_idx, ]
+
+
+#test<- dati_clean[-train_idx, ]
+dtrain <- xgb.DMatrix(data = as.matrix(X[train_idx,]), label = y[train_idx])
+dcal<-xgb.DMatrix(data = X[cal_idx, ], label = y[cal_idx])
+dtest  <- xgb.DMatrix(data = X[test_idx, ], label = y[test_idx])
+#dtest<- xgb.DMatrix(data = as.matrix(X[-train_idx,]), label = y[-train_idx])
+model <- xgboost(data = dtrain, objective = "multi:softprob", num_class = 3, nrounds = 100, verbose = 0)
+
+cal_probs <- predict(model, dcal)
+cal_probs <- matrix(cal_probs, ncol = 3, byrow = TRUE)
+
+# Nonconformity score = 1 - probabilità della classe vera
+cal_true_probs <- sapply(1:nrow(cal), function(i) cal_probs[i, cal$y_adj[i] + 1])
+cal_scores <- 1 - cal_true_probs
+
+alpha <- 0.05  # 90% confidence
+threshold <- quantile(cal_scores, probs = 1 - alpha, type = 1)
+
+
+test_probs <- predict(model, dtest)
+test_probs <- matrix(test_probs, ncol = 3, byrow = TRUE)
+pred_classes<-max.col(test_probs)-1
+confusionMatrix(as.factor(pred_classes),as.factor(y[test_idx]))
+library(tidyr)
+weighted_conf_matrix <- test%>%
+  group_by(actual = as.factor(y[test_idx]), predicted =pred_classes) %>%
+  summarise(weight = sum(WGT, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = predicted, values_from = weight, values_fill = 0)
+
+# Prediction sets: classi con nonconformity score <= threshold
+prediction_sets <- apply(test_probs, 1, function(probs) {
+  which(1 - probs <= threshold) - 1  # ritorna etichette predette
+})
+
+# Conta quante volte la vera classe è nel prediction set
+true_labels <- test$y_adj
+covered <- sapply(1:length(true_labels), function(i) true_labels[i] %in% prediction_sets[[i]])
+coverage <- mean(covered)
+cat("Copertura ottenuta:", round(coverage * 100, 2), "%\n")
+
+
+
+
+
+mondrian_icp <- function(cal_probs, cal_labels, test_probs, alpha = 0.1) {
+  classes <- sort(unique(cal_labels))
+  thresholds <- list()
+  
+  # Costruisco le soglie per ogni classe
+  for (k in classes) {
+    p_k <- cal_probs[, k + 1]  # perché etichette sono 0-based
+    in_class <- cal_labels == k
+    threshold_k <- quantile(1 - p_k[in_class], probs = 1 - alpha, type = 8)
+    thresholds[[as.character(k)]] <- threshold_k
+  }
+  
+  # Per ogni test point, assegna tutte le classi compatibili
+  prediction_sets <- lapply(1:nrow(test_probs), function(i) {
+    sapply(classes, function(k) {
+      p_ik <- test_probs[i, k + 1]
+      (1 - p_ik) <= thresholds[[as.character(k)]]
+    })
+  })
+  
+  # Risultato: lista di prediction sets per ogni esempio
+  return(prediction_sets)
+}
+# Ottieni probabilità predette su calibration e test
+cal_probs  <- predict(model, dcal)  %>% matrix(ncol = 3, byrow = TRUE)
+test_probs <- predict(model, dtest) %>% matrix(ncol = 3, byrow = TRUE)
+
+# Mondrian ICP con alpha = 0.1
+prediction_sets <- mondrian_icp(cal_probs, y[cal_idx], test_probs, alpha = 0.05)
+head(prediction_sets)
+# True label su test set
+true_labels <- y[test_idx]
+
+# Calcolo coverage e dimensione media dei set predetti
+covered <- sapply(1:length(prediction_sets), function(i) {
+  prediction_sets[[i]][true_labels[i] + 1]  # +1 per etichette 0-based
+})
+
+avg_set_size <- sapply(prediction_sets, sum) %>% mean()
+
+cat("Coverage:", mean(covered), "\n")
+cat("Dimensione media set predizione:", avg_set_size, "\n")
+
+
+
+##LOGISTICO
+# Metodo 1: Usando nnet con pesi
+# La tua formula per il multinomial logit
+library(nnet)   
+model_formula <- as.formula("as.factor(y_adj) ~ as.factor(AGE_CLA75) + as.factor(SEX) + as.factor(RIP)  + as.factor(HHINCOME) + as.factor(IC1) + as.factor(HS2) + as.factor(CITIZEN2) + as.factor(HATLEVEL4)+ as.factor(FUMO)+as.factor(BMI_CLASS)")
+
+# Modello multinomial logit pesato
+multinom_model <- multinom(model_formula, 
+                           data = train, 
+                  
+                           trace = FALSE)
+
+
+cal_probs <- predict(multinom_model, cal,type="probs")
+
+# Nonconformity score = 1 - probabilità della classe vera
+cal_true_probs <- sapply(1:nrow(cal), function(i) cal_probs[i, cal$y_adj[i] + 1])
+cal_scores <- 1 - cal_true_probs
+
+alpha <- 0.05  # 90% confidence
+threshold <- quantile(cal_scores, probs = 1 - alpha, type = 1)
+
+
+test_probs <- predict(multinom_model, test,type="probs")
+# Prediction sets: classi con nonconformity score <= threshold
+prediction_sets <- apply(test_probs, 1, function(probs) {
+  which(1 - probs <= threshold) - 1  # ritorna etichette predette
+})
+
+# Conta quante volte la vera classe è nel prediction set
+true_labels <- test$y_adj
+covered <- sapply(1:length(true_labels), function(i) true_labels[i] %in% prediction_sets[[i]])
+coverage <- mean(covered)
+cat("Copertura ottenuta:", round(coverage * 100, 2), "%\n")
+
+
+
+
+
+mondrian_icp <- function(cal_probs, cal_labels, test_probs, alpha = 0.1) {
+  classes <- sort(unique(cal_labels))
+  thresholds <- list()
+  
+  # Costruisco le soglie per ogni classe
+  for (k in classes) {
+    p_k <- cal_probs[, k + 1]  # perché etichette sono 0-based
+    in_class <- cal_labels == k
+    threshold_k <- quantile(1 - p_k[in_class], probs = 1 - alpha, type = 8)
+    thresholds[[as.character(k)]] <- threshold_k
+  }
+  
+  # Per ogni test point, assegna tutte le classi compatibili
+  prediction_sets <- lapply(1:nrow(test_probs), function(i) {
+    sapply(classes, function(k) {
+      p_ik <- test_probs[i, k + 1]
+      (1 - p_ik) <= thresholds[[as.character(k)]]
+    })
+  })
+  
+  # Risultato: lista di prediction sets per ogni esempio
+  return(prediction_sets)
+}
+
+# Mondrian ICP con alpha = 0.1
+prediction_sets <- mondrian_icp(cal_probs, y[cal_idx], test_probs, alpha = 0.05)
+head(prediction_sets)
+# True label su test set
+true_labels <- y[test_idx]
+
+# Calcolo coverage e dimensione media dei set predetti
+covered <- sapply(1:length(prediction_sets), function(i) {
+  prediction_sets[[i]][true_labels[i] + 1]  # +1 per etichette 0-based
+})
+
+avg_set_size <- sapply(prediction_sets, sum) %>% mean()
+
+cat("Coverage:", mean(covered), "\n")
+cat("Dimensione media set predizione:", avg_set_size, "\n")
+
+
